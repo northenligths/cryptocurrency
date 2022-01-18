@@ -1,6 +1,6 @@
 //This is the redux store created using redux toolkit
 import { configureStore } from "@reduxjs/toolkit";
-import { cryptoApi } from "../services/CryptoApi"; //pass this reducer to the redux store
+import { cryptoApi } from "../services/cryptoApi"; //pass this reducer to the redux store
 
 export default configureStore({
   reducer: {
