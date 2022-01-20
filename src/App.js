@@ -5,7 +5,6 @@ import { Navbar } from "./components/Navbar";
 import "./App.css";
 import { Homepage } from "./components/Homepage";
 import Cryptocurrencies from "./components/Cryptocurrencies";
-import { Exchanges } from "./components/Exchanges";
 import CryptoDetails from "./components/CryptoDetails";
 import News from "./components/News";
 
@@ -21,9 +20,6 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <Homepage />
-              </Route>
-              <Route exact path="/exchanges">
-                <Exchanges />
               </Route>
               <Route exact path="/cryptocurrencies">
                 <Cryptocurrencies />
