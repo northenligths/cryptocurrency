@@ -11,26 +11,29 @@ const baseUrl = "https://coinranking1.p.rapidapi.com";
 const createRequest = (url) => ({ url, headers: cryptoApiHeaders });
 
 export const cryptoApi = createApi({
-  reducerPath: "cryptoApi", //this is for specifying the purpose of the reducer
+  reducerPath: "cryptoApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getCryptos: builder.query({
       query: (count) => createRequest(`/coins?limit=${count}`),
-
-      getCryptoDetails: builder.query({
-        query: (coinId) => createRequest(`/coin/${coinId}`),
-
-        getCryptoHistory: builder.query({
-          query: ({ coinId, timeperiod }) =>
-            createRequest(`coin/${coinId}/history?timeperiod=${timeperiod}`),
-        }),
-      }),
     }),
+
+    getCryptoDetails: builder.query({
+      query: (coinId) => createRequest(`/coin/${coinId}`),
+    }),
+
+    // Note: Change the coin price history endpoint from this - `coin/${coinId}/history/${timeperiod} to this - `coin/${coinId}/history?timeperiod=${timeperiod}`
+    getCryptoHistory: builder.query({
+      query: ({ coinId, timeperiod }) =>
+        createRequest(`coin/${coinId}/history?timeperiod=${timeperiod}`),
+    }),
+
+    // Note: To access this endpoint you need premium plan
   }),
 });
 
 export const {
-  useGetCryptosQuery, //this is the hook created by redux toolkit to retrieve data from endpoint
+  useGetCryptosQuery,
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery,
 } = cryptoApi;
